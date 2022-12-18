@@ -1,11 +1,11 @@
-import { Fragment } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import AllQoutes from "./pages/AllQoutes";
 import NewQoutes from "./pages/NewQoutes";
 import QouteDetails from "./pages/QouteDetails";
+import Layout from "./components/layout/Layout";
 function App() {
   return (
-    <Fragment>
+    <Layout>
       <Switch>
         <Route path="/" exact>
           <Redirect to="/qoutes" />
@@ -20,7 +20,7 @@ function App() {
           <NewQoutes />
         </Route>
       </Switch>
-    </Fragment>
+    </Layout>
   );
 }
 
