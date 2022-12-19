@@ -1,13 +1,36 @@
-import { Fragment } from 'react';
-
-import QuoteItem from './QuoteItem';
-import classes from './QuoteList.module.css';
-
+import { Fragment } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import QuoteItem from "./QuoteItem";
+import classes from "./QuoteList.module.css";
+const sortQuotes = (quotes, ascending) => {
+  return quotes.sort((quoteA, quoteB) => {
+    if (ascending) {
+      return quoteA.id > quoteB.id ? 1 : -1;
+    } else {
+      return quoteA.id < quoteB.id ? 1 : -1;
+    }
+  });
+};
 const QuoteList = (props) => {
+  const history = useHistory();
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  console.log(queryParams);
+  const orderIsAscending = queryParams.get("sort") === "asc";
+  const changeSorting = () => {
+    history.push(`/qoutes?sort=${orderIsAscending ? "desc" : "asc"}`);
+  };
+  const sortedQoutes = sortQuotes(props.qoutes, orderIsAscending);
   return (
     <Fragment>
+      <div className={classes.sorting}>
+        <button onClick={changeSorting}>
+          Sort {orderIsAscending ? "Descending" : "Ascending"}
+        </button>
+      </div>
       <ul className={classes.list}>
-        {props.quotes.map((quote) => (
+        {sortedQoutes.map((quote) => (
           <QuoteItem
             key={quote.id}
             id={quote.id}
