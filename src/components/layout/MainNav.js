@@ -7,7 +7,7 @@ const MainNav = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <NavLink activeClassName={styles.active} to="./qoutes">
+            <NavLink activeClassName={styles.active} to="/qoutes">
               All Qoutes
             </NavLink>
           </li>
