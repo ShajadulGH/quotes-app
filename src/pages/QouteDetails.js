@@ -1,32 +1,45 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Link, Route, useParams, useRouteMatch } from "react-router-dom";
 import Comments from "../components/comments/Comments";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
+import useHttp from "../components/hooks/use-http";
+import { getSingleQuote } from "../lib/api";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 const QouteDetails = () => {
-  const DUMMY = [
-    {
-      id: "q1",
-      author: "Shajadul",
-      text: "Learning React is fun!!!",
-    },
-    {
-      id: "q2",
-      author: "Mamun",
-      text: "Learning Node js is easy!!!",
-    },
-  ];
+  const {
+    sendRequest,
+    status,
+    error,
+    data: loadedSingleData,
+  } = useHttp(getSingleQuote, true);
   const routeMatch = useRouteMatch();
-  console.log(routeMatch);
   const params = useParams();
-  const qoute = DUMMY.find((qoute) => qoute.id === params.qouteID);
-  if (!qoute) {
+  const { qouteID } = params;
+
+  useEffect(() => {
+    sendRequest(qouteID);
+  }, [sendRequest, qouteID]);
+  if (status === "pending") {
+    return (
+      <div className="centered">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+  if (error) {
+    return <p className="centered focused">{error}</p>;
+  }
+  if (!loadedSingleData.text) {
     return <p>No Qoute found!</p>;
   }
   return (
     <Fragment>
       <h1>Qoute Details!</h1>
       {/* <p>{params.qouteID}</p> */}
-      <HighlightedQuote author={qoute.author} text={qoute.text} />
+      <HighlightedQuote
+        author={loadedSingleData.author}
+        text={loadedSingleData.text}
+      />
       <Route path={routeMatch.path} exact>
         <div className="centered">
           <Link className="btn--flat" to={`${routeMatch.url}/comments`}>
