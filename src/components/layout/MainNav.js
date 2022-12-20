@@ -3,17 +3,17 @@ import styles from "./MainNavigation.module.css";
 const MainNav = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>Daily Qoutes</div>
+      <div className={styles.logo}>Daily Quotes</div>
       <nav className={styles.nav}>
         <ul>
           <li>
             <NavLink activeClassName={styles.active} to="/qoutes">
-              All Qoutes
+              All Quotes
             </NavLink>
           </li>
           <li>
             <NavLink activeClassName={styles.active} to="/new-qoutes">
-              Add Qoute
+              Add Quote
             </NavLink>
           </li>
         </ul>
