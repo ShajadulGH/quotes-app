@@ -89,7 +89,7 @@ export async function getAllComments(quoteId) {
   for (const key in data) {
     const commentObj = {
       id: key,
-      ...data[key],
+      text: data[key],
     };
 
     transformedComments.push(commentObj);
