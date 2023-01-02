@@ -1,13 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
-// import Image from "../../Image/qoute.png";
 const MainNav = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
-        Daily Quotes
-        {/* <img src={Image} alt="logo" /> */}
-      </div>
+      <div className={styles.logo}>Daily Quotes</div>
       <nav className={styles.nav}>
         <ul>
           <li>
