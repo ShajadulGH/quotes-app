@@ -23,7 +23,7 @@ const AllQoutes = () => {
     );
   }
   if (error) {
-    return <p className="centered focused">{error}</p>;
+    return <p className="centered error">{error}</p>;
   }
   if (status === "completed" && (!loadedData || loadedData.length === 0)) {
     return <NoQuotesFound />;

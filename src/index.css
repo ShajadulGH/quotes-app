@@ -21,7 +21,11 @@ body {
   font-weight: bold;
   color: white;
 }
-
+.error {
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+}
 .btn {
   text-decoration: none;
   background-color: teal;
@@ -53,4 +57,15 @@ body {
 .btn--flat:active {
   background-color: teal;
   color: white;
+}
+@media (max-width: 640px) {
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  .error {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+  }
 }

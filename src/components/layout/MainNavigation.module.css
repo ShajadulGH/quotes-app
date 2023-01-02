@@ -35,3 +35,11 @@
 .nav a.active {
   color: #e6fcfc;
 }
+@media (max-width: 640px) {
+  .nav li {
+    font-size: 1rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}

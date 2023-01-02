@@ -35,3 +35,19 @@
   font-style: italic;
   color: #566d6d;
 }
+@media (max-width: 640px) {
+  .item {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .item figure {
+    width: 100%;
+  }
+  .item blockquote {
+    font-size: 1rem;
+  }
+  .item figcaption {
+    font-size: 0.9rem;
+  }
+}
