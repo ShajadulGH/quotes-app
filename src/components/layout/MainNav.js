@@ -5,7 +5,7 @@ const MainNav = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        My Quotes
+        Daily Quotes
         {/* <img src={Image} alt="logo" /> */}
       </div>
       <nav className={styles.nav}>
