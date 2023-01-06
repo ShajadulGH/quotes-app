@@ -18,6 +18,7 @@
   display: flex;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav li {
@@ -29,7 +30,21 @@
   text-decoration: none;
   color: #88dfdf;
 }
+.logOut {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #008080;
+  border: 1px solid #008080;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
+.logOut:hover {
+  background-color: #00aaaa;
+  color: white;
+}
 .nav a:hover,
 .nav a:active,
 .nav a.active {
@@ -43,11 +58,7 @@
     font-size: 0.9rem;
   }
 }
-
 @media (max-width: 640px) {
-  /* .nav li {
-    font-size: 1rem;
-  } */
   .logo {
     font-size: 1.5rem;
   }

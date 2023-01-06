@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AuthContext from "../../store/auth-context";
 import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 const MainNav = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const authCtx = useContext(AuthContext);
+  const logoutHandler = () => {
+    authCtx.logout();
+  };
   return (
     <header className={styles.header}>
       <div className={styles.logo}>Daily Quotes</div>
@@ -22,16 +27,27 @@ const MainNav = () => {
               Add Quote
             </NavLink>
           </li>
-          <li>
-            <NavLink activeClassName={styles.active} to="/qoutes">
-              Profile
-            </NavLink>
-          </li>
-          <li>
-            <NavLink activeClassName={styles.active} to="/qoutes">
-              Log In
-            </NavLink>
-          </li>
+          {authCtx.isLoggedIn && (
+            <li>
+              <NavLink activeClassName={styles.active} to="/profile">
+                Profile
+              </NavLink>
+            </li>
+          )}
+          {!authCtx.isLoggedIn && (
+            <li>
+              <NavLink activeClassName={styles.active} to="/auth">
+                Log In
+              </NavLink>
+            </li>
+          )}
+          {authCtx.isLoggedIn && (
+            <li>
+              <button className={styles.logOut} onClick={logoutHandler}>
+                Log Out
+              </button>
+            </li>
+          )}
         </ul>
         <button
           onClick={() => setIsMobile(!isMobile)}
