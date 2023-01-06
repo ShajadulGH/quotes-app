@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setErorr] = useState("");
   const emailRef = useRef();
   const passwordRef = useRef();
   const authCtx = useContext(AuthContext);
@@ -19,10 +20,10 @@ const AuthForm = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDjqTuvP9UU9KIdm_58qGM0iISIAigCxsA";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCysLLYRZz_oGcBpG5WUs-k_CY_n5qxzqY";
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDjqTuvP9UU9KIdm_58qGM0iISIAigCxsA";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCysLLYRZz_oGcBpG5WUs-k_CY_n5qxzqY";
     }
     const sendUser = async () => {
       setIsLoading(true);
@@ -60,8 +61,9 @@ const AuthForm = () => {
         }
       }
     };
-    sendUser().catch((error) => alert(error.message));
+    sendUser().catch((error) => setErorr(error.message));
   };
+  const content = <p className={classes.error}>{error}</p>;
   return (
     <Fragment>
       <p className={classes.note}>
@@ -77,6 +79,7 @@ const AuthForm = () => {
           <div className={classes.control}>
             <label htmlFor="password">Your Password</label>
             <input type="password" id="password" required ref={passwordRef} />
+            {content}
           </div>
           <div className={classes.actions}>
             {isLoading ? (

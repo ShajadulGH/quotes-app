@@ -43,3 +43,11 @@
   background-color: #1ea3a3;
   border-color: #1ea3a3;
 }
+.error {
+  color: red;
+  font-weight: 500;
+}
+.success {
+  color: green;
+  font-weight: 500;
+}

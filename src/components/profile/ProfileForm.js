@@ -1,8 +1,9 @@
 import classes from "./ProfileForm.module.css";
 
-import { useRef, useContext } from "react";
+import { useRef, useContext, useState } from "react";
 import AuthContext from "../../store/auth-context";
 const ProfileForm = () => {
+  const [error, setErorr] = useState("");
   const newPassRef = useRef();
   const authCtx = useContext(AuthContext);
   const submitHandler = (e) => {
@@ -12,7 +13,7 @@ const ProfileForm = () => {
     const token = authCtx.token;
     const changePassword = async () => {
       const response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyDjqTuvP9UU9KIdm_58qGM0iISIAigCxsA",
+        "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCysLLYRZz_oGcBpG5WUs-k_CY_n5qxzqY",
         {
           method: "POST",
           headers: {
@@ -29,7 +30,7 @@ const ProfileForm = () => {
 
       if (response.ok) {
         newPassRef.current.value = "";
-        alert("Succesfully changed password");
+        setErorr("Succesfully changed password");
       } else {
         let errorMessage = "Authentication Failed!";
         if (data && data.error.errors[0].message) {
@@ -39,8 +40,13 @@ const ProfileForm = () => {
       }
       console.log(data);
     };
-    changePassword().catch((error) => alert(error.message));
+    changePassword().catch((error) => setErorr(error.message));
   };
+  const isSuccesful = error.includes("Succesfully");
+  console.log(isSuccesful);
+  const content = (
+    <p className={isSuccesful ? classes.success : classes.error}>{error}</p>
+  );
 
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -48,6 +54,7 @@ const ProfileForm = () => {
         <label htmlFor="new-password">New Password</label>
         <input type="password" id="new-password" ref={newPassRef} />
       </div>
+      {content}
       <div className={classes.action}>
         <button>Change Password</button>
       </div>
