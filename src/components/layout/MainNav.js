@@ -16,9 +16,20 @@ const MainNav = () => {
               All Quotes
             </NavLink>
           </li>
+
           <li>
             <NavLink activeClassName={styles.active} to="/new-qoutes">
               Add Quote
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName={styles.active} to="/qoutes">
+              Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink activeClassName={styles.active} to="/qoutes">
+              Log In
             </NavLink>
           </li>
         </ul>

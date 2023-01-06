@@ -38,11 +38,16 @@
 .mobile-icon {
   display: none;
 }
+@media (max-width: 800px) {
+  .nav li {
+    font-size: 0.9rem;
+  }
+}
 
 @media (max-width: 640px) {
-  .nav li {
+  /* .nav li {
     font-size: 1rem;
-  }
+  } */
   .logo {
     font-size: 1.5rem;
   }
