@@ -67,7 +67,7 @@ const AuthForm = () => {
   return (
     <Fragment>
       <p className={classes.note}>
-        Note: With log in you will be able to Add Quotes
+        Note: For Add Quotes and comment on Quotes you have to Log In. Have Fun!
       </p>
       <section className={classes.auth}>
         <h1>{isLogin ? "Login" : "Sign Up"}</h1>
