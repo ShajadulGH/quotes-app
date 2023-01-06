@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 const MainNav = () => {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   return (
     <header className={styles.header}>
       <div className={styles.logo}>Daily Quotes</div>
