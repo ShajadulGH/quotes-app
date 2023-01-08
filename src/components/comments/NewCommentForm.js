@@ -11,10 +11,12 @@ const NewCommentForm = (props) => {
   }, [status, error, onAddComment]);
   const submitFormHandler = (event) => {
     event.preventDefault();
-    sendRequest({
-      commentData: commentTextRef.current.value,
-      quoteId: props.quoteID,
-    });
+    if (commentTextRef.current.value.trim().length > 0) {
+      sendRequest({
+        commentData: commentTextRef.current.value,
+        quoteId: props.quoteID,
+      });
+    }
     commentTextRef.current.value = "";
   };
 
